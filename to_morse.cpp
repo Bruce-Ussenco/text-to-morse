@@ -14,10 +14,29 @@ vector<pair<char, string>> pairs = {
     {'d', "-.."},
     {'e', "."},
     {'f', "..-."},
+    {'g', "--."},
+    {'h', "...."},
+    {'i', ".."},
+    {'j', ".---"},
+    {'k', "-.-"},
+    {'l', ".-.."},
+    {'m', "--"},
+    {'n', "-."},
+    {'o', "---"},
+    {'p', ".--."},
+    {'q', "--.-"},
+    {'r', ".-."},
+    {'s', "..."},
+    {'t', "-"},
+    {'u', "..-"},
+    {'v', "...-"},
+    {'w', ".--"},
+    {'x', "-..-"},
+    {'y', "-.--"},
+    {'z', "--.."},
 };
 
 int pairsCount = pairs.size();
-
 
 
 string toMorse(char c);
@@ -43,7 +62,8 @@ int main(int argc, char **argv)
     char *text = argv[1];
     string morse = "";
 
-    cout << "Your text:\n" << text << "\n\n";
+    cout << "Your text:\n";
+    cout << text << "\n\n";
 
     for (int i = 0; text[i] != '\0'; i++) {
         if (i != 0) morse += ' ';
