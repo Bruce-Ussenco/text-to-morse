@@ -5,8 +5,13 @@
 
 using namespace std;
 
+typedef struct Translator {
+    char letter;
+    string morse;
+} Translator;
+
 // pairs of a letter and its morse translation
-vector<pair<char, string>> pairs = {
+vector<Translator> translators = {
     {' ', " "},
     {'a', ".-"},
     {'b', "-..."},
@@ -36,7 +41,7 @@ vector<pair<char, string>> pairs = {
     {'z', "--.."},
 };
 
-int pairsCount = pairs.size();
+int pairsCount = translators.size();
 
 
 string toMorse(char c);
@@ -80,10 +85,10 @@ int main(int argc, char **argv)
 string toMorse(char c)
 {
     for (int i = 0; i < pairsCount; i++) {
-        pair p = pairs[i];
+        Translator t = translators[i];
 
-        if (tolower(c) == p.first) {
-            return p.second;
+        if (tolower(c) == t.letter) {
+            return t.morse;
         }
     }
 
