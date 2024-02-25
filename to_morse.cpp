@@ -12,6 +12,8 @@ vector<pair<char, string>> pairs = {
     {'b', "-..."},
     {'c', "-.-."},
     {'d', "-.."},
+    {'e', "."},
+    {'f', "..-."},
 };
 
 int pairsCount = pairs.size();
@@ -46,21 +48,7 @@ int main(int argc, char **argv)
     for (int i = 0; text[i] != '\0'; i++) {
         if (i != 0) morse += ' ';
 
-        char c = text[i];
-        morse += toMorse(c);
-
-        /*switch (c) {
-            case ' ':
-                morse += ' ';    break;
-            case 'a':
-                morse += ".-";   break;
-            case 'b':
-                morse += "-..."; break;
-            case 'c':
-                morse += "-.-."; break;
-            default:
-                morse += '?'; break;
-        }*/
+        morse += toMorse(text[i]);
     }
 
     cout << "Morse translation:\n";
@@ -74,7 +62,7 @@ string toMorse(char c)
     for (int i = 0; i < pairsCount; i++) {
         pair p = pairs[i];
 
-        if (c == p.first) {
+        if (tolower(c) == p.first) {
             return p.second;
         }
     }
