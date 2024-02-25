@@ -1,7 +1,6 @@
 #include <iostream>
 #include <string>
 #include <vector>
-#include <utility>
 
 using namespace std;
 
@@ -41,35 +40,26 @@ vector<Translator> translators = {
     {'z', "--.."},
 };
 
-int pairsCount = translators.size();
+int translatorsCount = translators.size();
 
 
 string toMorse(char c);
+bool checkErrors(int argc);
 
 int main(int argc, char **argv)
 {
     cout << '\n';
 
-    if (argc == 1) {
-        cout << "[ERROR] Pass some text!\n\n";
-        
-        return 1;
-    }
-    if (argc > 2) {
-        cout << "[ERROR] Pass a single argument\n"
-             << "To do that, place your text inside \"\":\n"
-             << "to_morse \"all the text you want to translate into morse code\"\n\n";
+    if (checkErrors(argc)) return 1;
 
-        return 1;
-    }
-
-
+    // the text to translate is the first arg
     char *text = argv[1];
     string morse = "";
 
     cout << "Your text:\n";
-    cout << text << "\n\n";
+    cout << '\"' << text << "\"\n\n";
 
+    // find the translation of each char
     for (int i = 0; text[i] != '\0'; i++) {
         if (i != 0) morse += ' ';
 
@@ -77,14 +67,14 @@ int main(int argc, char **argv)
     }
 
     cout << "Morse translation:\n";
-    cout << morse << "\n\n";
+    cout << '\"' << morse << "\"\n\n";
 
     return 0;
 }
 
 string toMorse(char c)
 {
-    for (int i = 0; i < pairsCount; i++) {
+    for (int i = 0; i < translatorsCount; i++) {
         Translator t = translators[i];
 
         if (tolower(c) == t.letter) {
@@ -93,5 +83,24 @@ string toMorse(char c)
     }
 
     return "?";
+}
+
+bool checkErrors(int argc)
+{
+    if (argc == 1) {
+        cout << "[ERROR] Pass some text!\n\n";
+        
+        return true;
+    }
+
+    if (argc > 2) {
+        cout << "[ERROR] Pass a single argument\n"
+             << "To do that, place your text inside \"\":\n"
+             << "to_morse \"all the text you want to translate into morse code\"\n\n";
+
+        return true;
+    }
+
+    return false;
 }
 
